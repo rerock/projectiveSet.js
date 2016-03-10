@@ -7,7 +7,10 @@ Game = function(){
 Game.prototype.xor = function(table) {
   // console.log(this.solve(table));
   return _xor(table.deal, table);
+};
 
+Game.prototype.gameOver = function(){
+  return this.table.deck.deck.length === 0;
 };
 
 Game.prototype.solve = function(table) {

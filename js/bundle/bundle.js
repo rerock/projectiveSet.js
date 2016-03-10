@@ -65,6 +65,9 @@
 	  if(res === 0){
 	    table.dealCards();
 	    $('.card').removeClass('select');
+	    if (game.gameOver()) {
+	      document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
+	    }
 	  }
 	});
 	
@@ -75,12 +78,13 @@
 	$('#solve').click(function(){
 	  var solve = game.solve(table);
 	  for (var i = 0; i < solve.length; i++) {
-	    table.deal[i] = solve[i];
 	    if (solve[i] === 1) {
 	      $('#card'+i).addClass('select');
+	      table.deal[i] = true;
 	    }
 	    else {
 	      $('#card'+i).removeClass('select');
+	      table.deal[i] = false;
 	    }
 	  }
 	});
@@ -103,7 +107,10 @@
 	Game.prototype.xor = function(table) {
 	  // console.log(this.solve(table));
 	  return _xor(table.deal, table);
+	};
 	
+	Game.prototype.gameOver = function(){
+	  return this.table.deck.deck.length === 0;
 	};
 	
 	Game.prototype.solve = function(table) {

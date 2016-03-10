@@ -19,6 +19,9 @@ $('#cards').bind('click', function(){
   if(res === 0){
     table.dealCards();
     $('.card').removeClass('select');
+    if (game.gameOver()) {
+      document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
+    }
   }
 });
 
@@ -29,12 +32,13 @@ $('#newgame').click(function(){
 $('#solve').click(function(){
   var solve = game.solve(table);
   for (var i = 0; i < solve.length; i++) {
-    table.deal[i] = solve[i];
     if (solve[i] === 1) {
       $('#card'+i).addClass('select');
+      table.deal[i] = true;
     }
     else {
       $('#card'+i).removeClass('select');
+      table.deal[i] = false;
     }
   }
 });

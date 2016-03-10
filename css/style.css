@@ -5,6 +5,15 @@
   text-align: center;
 }
 
+#toolbar {
+  margin: 1%;
+  width: 99%;
+  height: 30%;
+  text-align: center;
+}
+
+
+
 body {
   /*background-image: url("http://www.sheepscotgeneral.com/wp-content/uploads/2013/10/Light-Wood-Background-Wallpaper.jpg");*/
   /*background-image: url("https://s-media-cache-ak0.pinimg.com/236x/ab/d5/49/abd549c82c5598d8d6222e5aa2df4a28.jpg");*/
@@ -33,4 +42,12 @@ body {
 
 .select {
 	border: 5px solid red;
+}
+
+button {
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  size: 14px;
+  font-size: 18px;
 }
