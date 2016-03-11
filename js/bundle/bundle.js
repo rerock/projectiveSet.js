@@ -210,6 +210,13 @@
 
 	Deck = function(){
 	  this.deck = Array.apply(null, {length: 64}).map(Number.call, Number).splice(1);
+	  var deck = document.getElementById("deck");
+	  var card;
+	  for (var i = 0; i < this.deck.length; i++) {
+	    card = document.createElement("div");
+	    card.className = 'card_back';
+	    deck.appendChild(card);
+	  }
 	};
 	
 	Deck.prototype.shuffle = function(){
@@ -224,6 +231,10 @@
 	
 	
 	Deck.prototype.draw = function(){
+	  if (this.deck.length) {
+	    $('div#deck > div:first').remove();
+	    return this.deck.shift();
+	  }
 	  return this.deck.length ? this.deck.shift() : 0;
 	};
 	

@@ -72,3 +72,16 @@ button {
 	content: "Score: ";
 	margin-right: 2em;
 }
+
+.card_back{
+	background-color: #222;
+	width: 110px;
+	height: 170px;
+  margin-right: -100px;
+  display: inline-block;
+  border: 1px solid #CCC;
+}
+
+#deck {
+	margin-left: 10vh;
+}
