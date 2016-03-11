@@ -41,7 +41,13 @@ body {
 }
 
 .select {
-	border: 5px solid red;
+  background: repeating-linear-gradient(
+    135deg,
+    #2a2b2a,
+    #2a2b2a 10px,
+    #000 10px,
+    #000 20px
+  );
 }
 
 button {
@@ -50,4 +56,19 @@ button {
   height: 40px;
   size: 14px;
   font-size: 18px;
+}
+
+
+
+.scorecard{
+  font-size: 3em;
+	top:0;
+	right:0;
+	margin: 0 auto;
+	padding: 0;
+	height:60px;
+	width: 200px;
+	position:relative;
+	content: "Score: ";
+	margin-right: 2em;
 }

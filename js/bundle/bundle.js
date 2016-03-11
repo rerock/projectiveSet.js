@@ -63,8 +63,11 @@
 	$('#cards').bind('click', function(){
 	  var res = game.xor(table);
 	  if(res === 0){
-	    table.dealCards();
-	    $('.card').removeClass('select');
+	    game.increaseScore();
+	    $('.card').fadeOut(150).fadeIn(150).removeClass('select');
+	    setTimeout(function() {
+	      table.dealCards();
+	    }, 150)
 	    if (game.gameOver()) {
 	      document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
 	    }
@@ -102,6 +105,7 @@
 	
 	Game = function(){
 	  this.table = new Table();
+	  this.score = 0;
 	};
 	
 	Game.prototype.xor = function(table) {
@@ -115,12 +119,21 @@
 	
 	Game.prototype.solve = function(table) {
 	  var selectedArray;
-	  for(var i = 1; i<=Math.pow(2,7); i++){
+	  for(var i = 1; i <= Math.pow(2,7); i++){
 	    selectedArray = _selectedArray(i);
 	    if (_xor(selectedArray, table) === 0){
 	      return selectedArray;
 	    }
 	  }
+	};
+	
+	Game.prototype.increaseScore = function(){
+	  for (var i = 0; i < this.table.deal.length; i++) {
+	    if (this.table.deal[i]) {
+	      this.score ++;
+	    }
+	  }
+	  $('#score').text("Score: " +this.score);
 	};
 	
 	_xor = function(selected, table){

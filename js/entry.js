@@ -17,8 +17,11 @@ $('#cards').click(function(e){
 $('#cards').bind('click', function(){
   var res = game.xor(table);
   if(res === 0){
-    table.dealCards();
-    $('.card').removeClass('select');
+    game.increaseScore();
+    $('.card').fadeOut(150).fadeIn(150).removeClass('select');
+    setTimeout(function() {
+      table.dealCards();
+    }, 150)
     if (game.gameOver()) {
       document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
     }
