@@ -64,7 +64,7 @@
 	  var res = game.xor(table);
 	  if(res === 0){
 	    game.increaseScore();
-	    $('.card').fadeOut(150).fadeIn(150).removeClass('select');
+	    $('.select').fadeOut(150).fadeIn(150).removeClass('select');
 	    setTimeout(function() {
 	      table.dealCards();
 	    }, 150)
