@@ -16,6 +16,8 @@ $('#cards').click(function(e){
 
 $('#cards').bind('click', function(){
   var res = game.xor(table);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+  scoreCard.draw();
   if(res === 0){
     game.increaseScore();
     $('.select').fadeOut(150).fadeIn(150).removeClass('select');
@@ -32,6 +34,12 @@ $('#newgame').click(function(){
   window.location.reload();
 });
 
+$('#clear').click(function(){
+  $('.select').removeClass('select');
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], 0);
+  scoreCard.draw();
+});
+
 $('#solve').click(function(){
   var solve = game.solve(table);
   for (var i = 0; i < solve.length; i++) {
@@ -44,6 +52,9 @@ $('#solve').click(function(){
       table.deal[i] = false;
     }
   }
+  var res = game.xor(table);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+  scoreCard.draw();
 });
 
 $('#beginner').click(function() {

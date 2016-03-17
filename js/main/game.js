@@ -6,7 +6,7 @@ Game = function(){
 };
 
 Game.prototype.xor = function(table) {
-  // console.log(this.solve(table));
+  // console.log(_xor(table.deal, table));
   return _xor(table.deal, table);
 };
 

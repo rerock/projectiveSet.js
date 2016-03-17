@@ -14,6 +14,9 @@ Table = function(){
     this.items[i].draw();
     this.deal[i] = false;
   }
+  var canvas = document.getElementsByTagName("canvas")[7];
+  var scoreCard = new Card(canvas, 0);
+  scoreCard.draw();
 };
 
 Table.prototype.dealCards = function(){
