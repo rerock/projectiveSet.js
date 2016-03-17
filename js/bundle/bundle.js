@@ -62,9 +62,17 @@
 	
 	$('#cards').bind('click', function(){
 	  var res = game.xor(table);
+	  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+	  scoreCard.draw();
 	  if(res === 0){
-	    table.dealCards();
-	    $('.card').removeClass('select');
+	    game.increaseScore();
+	    $('.select').fadeOut(150).fadeIn(150).removeClass('select');
+	    setTimeout(function() {
+	      table.dealCards();
+	    }, 150)
+	    if (game.gameOver()) {
+	      document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
+	    }
 	  }
 	});
 	
@@ -72,17 +80,27 @@
 	  window.location.reload();
 	});
 	
+	$('#clear').click(function(){
+	  $('.select').removeClass('select');
+	  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], 0);
+	  scoreCard.draw();
+	});
+	
 	$('#solve').click(function(){
 	  var solve = game.solve(table);
 	  for (var i = 0; i < solve.length; i++) {
-	    table.deal[i] = solve[i];
 	    if (solve[i] === 1) {
 	      $('#card'+i).addClass('select');
+	      table.deal[i] = true;
 	    }
 	    else {
 	      $('#card'+i).removeClass('select');
+	      table.deal[i] = false;
 	    }
 	  }
+	  var res = game.xor(table);
+	  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+	  scoreCard.draw();
 	});
 	
 	$('#beginner').click(function() {
@@ -94,26 +112,39 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Table = __webpack_require__(4);
+	var Table = __webpack_require__(2);
 	
 	Game = function(){
 	  this.table = new Table();
+	  this.score = 0;
 	};
 	
 	Game.prototype.xor = function(table) {
-	  // console.log(this.solve(table));
+	  // console.log(_xor(table.deal, table));
 	  return _xor(table.deal, table);
+	};
 	
+	Game.prototype.gameOver = function(){
+	  return this.table.deck.deck.length === 0;
 	};
 	
 	Game.prototype.solve = function(table) {
 	  var selectedArray;
-	  for(var i = 1; i<=Math.pow(2,7); i++){
+	  for(var i = 1; i <= Math.pow(2,7); i++){
 	    selectedArray = _selectedArray(i);
 	    if (_xor(selectedArray, table) === 0){
 	      return selectedArray;
 	    }
 	  }
+	};
+	
+	Game.prototype.increaseScore = function(){
+	  for (var i = 0; i < this.table.deal.length; i++) {
+	    if (this.table.deal[i]) {
+	      this.score ++;
+	    }
+	  }
+	  $('#score').text("Score: " +this.score);
 	};
 	
 	_xor = function(selected, table){
@@ -140,6 +171,44 @@
 
 /***/ },
 /* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Card = __webpack_require__(3);
+	var Deck = __webpack_require__(4);
+	
+	Table = function(){
+	  this.deck = new Deck();
+	  this.deck.shuffle();
+	  this.items = new Array(7);
+	  this.canvas = new Array(7);
+	  this.deal = new Array(7);
+	  for (var i = 0; i < 7; i++) {
+	    $("#card"+i).removeClass('select');
+	    this.canvas[i] = document.getElementsByTagName("canvas")[i];
+	    this.items[i] = new Card(this.canvas[i], this.deck.draw());
+	    this.items[i].draw();
+	    this.deal[i] = false;
+	  }
+	  var canvas = document.getElementsByTagName("canvas")[7];
+	  var scoreCard = new Card(canvas, 0);
+	  scoreCard.draw();
+	};
+	
+	Table.prototype.dealCards = function(){
+	  for(var i = 0; i < 7; i++) {
+	    if(this.deal[i]){
+	      this.items[i] = new Card(this.canvas[i], this.deck.draw());
+	      this.items[i].draw();
+	      this.deal[i] = false;
+	    }
+	  }
+	};
+	
+	module.exports = Table;
+
+
+/***/ },
+/* 3 */
 /***/ function(module, exports) {
 
 	var color = [ 'red', 'blue', 'green', 'orange', 'purple', 'yellow'];
@@ -185,11 +254,18 @@
 
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports) {
 
 	Deck = function(){
 	  this.deck = Array.apply(null, {length: 64}).map(Number.call, Number).splice(1);
+	  var deck = document.getElementById("deck");
+	  var card;
+	  for (var i = 0; i < this.deck.length; i++) {
+	    card = document.createElement("div");
+	    card.className = 'card_back';
+	    deck.appendChild(card);
+	  }
 	};
 	
 	Deck.prototype.shuffle = function(){
@@ -204,45 +280,14 @@
 	
 	
 	Deck.prototype.draw = function(){
+	  if (this.deck.length) {
+	    $('div#deck > div:first').remove();
+	    return this.deck.shift();
+	  }
 	  return this.deck.length ? this.deck.shift() : 0;
 	};
 	
 	module.exports = Deck;
-
-
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Card = __webpack_require__(2);
-	var Deck = __webpack_require__(3);
-	
-	Table = function(){
-	  this.deck = new Deck();
-	  this.deck.shuffle();
-	  this.items = new Array(7);
-	  this.canvas = new Array(7);
-	  this.deal = new Array(7);
-	  for (var i = 0; i < 7; i++) {
-	    $("#card"+i).removeClass('select');
-	    this.canvas[i] = document.getElementsByTagName("canvas")[i];
-	    this.items[i] = new Card(this.canvas[i], this.deck.draw());
-	    this.items[i].draw();
-	    this.deal[i] = false;
-	  }
-	};
-	
-	Table.prototype.dealCards = function(){
-	  for(var i = 0; i < 7; i++) {
-	    if(this.deal[i]){
-	      this.items[i] = new Card(this.canvas[i], this.deck.draw());
-	      this.items[i].draw();
-	      this.deal[i] = false;
-	    }
-	  }
-	};
-	
-	module.exports = Table;
 
 
 /***/ }

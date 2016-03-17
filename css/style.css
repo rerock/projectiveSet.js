@@ -5,6 +5,15 @@
   text-align: center;
 }
 
+#toolbar {
+  margin: 1%;
+  width: 99%;
+  height: 30%;
+  text-align: center;
+}
+
+
+
 body {
   /*background-image: url("http://www.sheepscotgeneral.com/wp-content/uploads/2013/10/Light-Wood-Background-Wallpaper.jpg");*/
   /*background-image: url("https://s-media-cache-ak0.pinimg.com/236x/ab/d5/49/abd549c82c5598d8d6222e5aa2df4a28.jpg");*/
@@ -32,5 +41,80 @@ body {
 }
 
 .select {
-	border: 5px solid red;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 25px 0px #1abc9c;
+
+  /*background: repeating-linear-gradient(
+    135deg,
+    #2a2b2a,
+    #2a2b2a 10px,
+    #000 10px,
+    #000 20px
+  );*/
+}
+
+button {
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  size: 14px;
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+button:hover {
+ background: #428BCA;
+}
+
+
+.score{
+  font-size: 3em;
+	top:0;
+	right:0;
+	margin: 0 auto;
+	padding: 0;
+	height:60px;
+	width: 200px;
+	position:relative;
+	content: "Score: ";
+	margin-right: 2em;
+}
+
+.card_back{
+	background-image: url("http://www.jimknapp.com/Cards/Non-Bicycle_files/image002.jpg");
+  background-size: 100% 100%;
+	width: 110px;
+	height: 170px;
+  margin-right: -118px;
+  display: inline-block;
+  border: 1px solid #CCC;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+#deck {
+  margin: 0.1%;
+  width: 99%;
+  height: 30%;
+  text-align: center;
+}
+
+.scoreCard {
+  border: 0px solid black;
+	border-radius: 8px;
+	cursor:pointer;
+  margin-right: 50px;
+  padding: 10px;
+  display: inline-block;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
+  background: rgba(255,255,255,1);
+  background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+  background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+  background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+  background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
 }

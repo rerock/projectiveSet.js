@@ -2,22 +2,35 @@ var Table = require("./table");
 
 Game = function(){
   this.table = new Table();
+  this.score = 0;
 };
 
 Game.prototype.xor = function(table) {
-  // console.log(this.solve(table));
+  // console.log(_xor(table.deal, table));
   return _xor(table.deal, table);
+};
 
+Game.prototype.gameOver = function(){
+  return this.table.deck.deck.length === 0;
 };
 
 Game.prototype.solve = function(table) {
   var selectedArray;
-  for(var i = 1; i<=Math.pow(2,7); i++){
+  for(var i = 1; i <= Math.pow(2,7); i++){
     selectedArray = _selectedArray(i);
     if (_xor(selectedArray, table) === 0){
       return selectedArray;
     }
   }
+};
+
+Game.prototype.increaseScore = function(){
+  for (var i = 0; i < this.table.deal.length; i++) {
+    if (this.table.deal[i]) {
+      this.score ++;
+    }
+  }
+  $('#score').text("Score: " +this.score);
 };
 
 _xor = function(selected, table){

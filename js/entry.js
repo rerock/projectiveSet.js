@@ -16,9 +16,17 @@ $('#cards').click(function(e){
 
 $('#cards').bind('click', function(){
   var res = game.xor(table);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+  scoreCard.draw();
   if(res === 0){
-    table.dealCards();
-    $('.card').removeClass('select');
+    game.increaseScore();
+    $('.select').fadeOut(150).fadeIn(150).removeClass('select');
+    setTimeout(function() {
+      table.dealCards();
+    }, 150)
+    if (game.gameOver()) {
+      document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
+    }
   }
 });
 
@@ -26,17 +34,27 @@ $('#newgame').click(function(){
   window.location.reload();
 });
 
+$('#clear').click(function(){
+  $('.select').removeClass('select');
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], 0);
+  scoreCard.draw();
+});
+
 $('#solve').click(function(){
   var solve = game.solve(table);
   for (var i = 0; i < solve.length; i++) {
-    table.deal[i] = solve[i];
     if (solve[i] === 1) {
       $('#card'+i).addClass('select');
+      table.deal[i] = true;
     }
     else {
       $('#card'+i).removeClass('select');
+      table.deal[i] = false;
     }
   }
+  var res = game.xor(table);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+  scoreCard.draw();
 });
 
 $('#beginner').click(function() {
