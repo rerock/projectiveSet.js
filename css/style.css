@@ -18,7 +18,7 @@ body {
   /*background-image: url("http://www.sheepscotgeneral.com/wp-content/uploads/2013/10/Light-Wood-Background-Wallpaper.jpg");*/
   /*background-image: url("https://s-media-cache-ak0.pinimg.com/236x/ab/d5/49/abd549c82c5598d8d6222e5aa2df4a28.jpg");*/
   /*background-image: url("http://img05.deviantart.net/1972/i/2012/060/0/b/light_cherry_wood_floor_by_jmfitch-d4rfcp5.jpg");*/
-  background-image: url("http://images.freepicturesweb.com/img1/18/51/31.jpg");
+  background-image: url("http://www.sheepscotgeneral.com/wp-content/uploads/2013/10/Light-Wood-Background-Wallpaper.jpg");
 }
 .card {
   border: 0px solid black;
@@ -66,18 +66,31 @@ button:hover {
  background: #428BCA;
 }
 
+h2 {
+  color: #fff;
+  text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+  font: 50px 'ChunkFiveRegular';
+  float: left;
+  margin-left:50px;
+}
 
-.score{
+
+
+#score{
+  float:right;
   font-size: 3em;
 	top:0;
 	right:0;
-	margin: 0 auto;
-	padding: 0;
+	margin: auto auto;
+	padding: 40px 40px 40px 100px;
 	height:60px;
-	width: 200px;
+	width: 400px;
 	position:relative;
 	content: "Score: ";
 	margin-right: 2em;
+  color: #fff;
+	text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+	font: 50px 'ChunkFiveRegular';
 }
 
 .card_back{
@@ -90,6 +103,10 @@ button:hover {
   border: 1px solid #CCC;
   border-radius: 8px;
   padding: 10px;
+}
+
+#text{
+  display: inline-block;
 }
 
 #deck {
