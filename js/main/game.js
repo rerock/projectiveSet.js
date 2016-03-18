@@ -1,12 +1,12 @@
 var Table = require("./table");
 
-Game = function(){
-  this.table = new Table();
+Game = function(col_base){
+  this.col_base = col_base
+  this.table = new Table(this.col_base);
   this.score = 0;
 };
 
 Game.prototype.xor = function(table) {
-  // console.log(_xor(table.deal, table));
   return _xor(table.deal, table);
 };
 
@@ -16,8 +16,8 @@ Game.prototype.gameOver = function(){
 
 Game.prototype.solve = function(table) {
   var selectedArray;
-  for(var i = 1; i <= Math.pow(2,7); i++){
-    selectedArray = _selectedArray(i);
+  for(var i = 1; i <= Math.pow(2,this.col_base+1); i++){
+    selectedArray = _selectedArray(i, this.col_base+1);
     if (_xor(selectedArray, table) === 0){
       return selectedArray;
     }
@@ -43,9 +43,9 @@ _xor = function(selected, table){
   return result;
 }
 
-_selectedArray = function(num){
+_selectedArray = function(num, col_base){
   var result = [];
-  for(var i = 0; i<7; i++){
+  for(var i = 0; i<col_base+1; i++){
     result.push(num % 2);
     num = Math.floor(num / 2);
   }

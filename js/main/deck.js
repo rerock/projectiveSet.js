@@ -1,5 +1,5 @@
-Deck = function(){
-  this.deck = Array.apply(null, {length: 64}).map(Number.call, Number).splice(1);
+Deck = function(col_base){
+  this.deck = Array.apply(null, {length: Math.pow(2,col_base)}).map(Number.call, Number).splice(1);
   var deck = document.getElementById("deck");
   var card;
   for (var i = 0; i < this.deck.length; i++) {

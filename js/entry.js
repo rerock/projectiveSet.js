@@ -1,5 +1,6 @@
 var Game = require("./main/game");
-var game = new Game();
+var col_base = 6;
+var game = new Game(col_base);
 var table = game.table;
 
 $('#cards').click(function(e){
@@ -16,13 +17,13 @@ $('#cards').click(function(e){
 
 $('#cards').bind('click', function(){
   var res = game.xor(table);
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
   scoreCard.draw();
   if(res === 0){
     game.increaseScore();
     $('.select').fadeOut(150).fadeIn(150).removeClass('select');
     setTimeout(function() {
-      table.dealCards();
+      table.dealCards(col_base);
     }, 150)
     if (game.gameOver()) {
       document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
@@ -36,7 +37,7 @@ $('#newgame').click(function(){
 
 $('#clear').click(function(){
   $('.select').removeClass('select');
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], 0);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], 0, col_base);
   scoreCard.draw();
 });
 
@@ -53,10 +54,23 @@ $('#solve').click(function(){
     }
   }
   var res = game.xor(table);
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
   scoreCard.draw();
 });
 
 $('#beginner').click(function() {
-  game = new Game();
+  $('.card').remove();
+  $('.card_back').remove();
+  var cards = document.getElementById("cards");
+  col_base = 3;
+  var card;
+  for (var i = 0; i < col_base+1; i++) {
+    card = document.createElement("canvas");
+    card.className = 'card';
+    card.id = 'card'+i;
+    cards.appendChild(card);
+  }
+  game = new Game(col_base);
+  $('#score').text("Score: " +game.score);
+  table = game.table;
 });

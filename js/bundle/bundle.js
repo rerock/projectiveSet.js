@@ -45,7 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Game = __webpack_require__(1);
-	var game = new Game();
+	var col_base = 6;
+	var game = new Game(col_base);
 	var table = game.table;
 	
 	$('#cards').click(function(e){
@@ -62,13 +63,13 @@
 	
 	$('#cards').bind('click', function(){
 	  var res = game.xor(table);
-	  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+	  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
 	  scoreCard.draw();
 	  if(res === 0){
 	    game.increaseScore();
 	    $('.select').fadeOut(150).fadeIn(150).removeClass('select');
 	    setTimeout(function() {
-	      table.dealCards();
+	      table.dealCards(col_base);
 	    }, 150)
 	    if (game.gameOver()) {
 	      document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
@@ -82,7 +83,7 @@
 	
 	$('#clear').click(function(){
 	  $('.select').removeClass('select');
-	  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], 0);
+	  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], 0, col_base);
 	  scoreCard.draw();
 	});
 	
@@ -99,12 +100,25 @@
 	    }
 	  }
 	  var res = game.xor(table);
-	  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+	  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
 	  scoreCard.draw();
 	});
 	
 	$('#beginner').click(function() {
-	  game = new Game();
+	  $('.card').remove();
+	  $('.card_back').remove();
+	  var cards = document.getElementById("cards");
+	  col_base = 3;
+	  var card;
+	  for (var i = 0; i < col_base+1; i++) {
+	    card = document.createElement("canvas");
+	    card.className = 'card';
+	    card.id = 'card'+i;
+	    cards.appendChild(card);
+	  }
+	  game = new Game(col_base);
+	  $('#score').text("Score: " +game.score);
+	  table = game.table;
 	});
 
 
@@ -114,13 +128,13 @@
 
 	var Table = __webpack_require__(2);
 	
-	Game = function(){
-	  this.table = new Table();
+	Game = function(col_base){
+	  this.col_base = col_base
+	  this.table = new Table(this.col_base);
 	  this.score = 0;
 	};
 	
 	Game.prototype.xor = function(table) {
-	  // console.log(_xor(table.deal, table));
 	  return _xor(table.deal, table);
 	};
 	
@@ -130,8 +144,8 @@
 	
 	Game.prototype.solve = function(table) {
 	  var selectedArray;
-	  for(var i = 1; i <= Math.pow(2,7); i++){
-	    selectedArray = _selectedArray(i);
+	  for(var i = 1; i <= Math.pow(2,this.col_base+1); i++){
+	    selectedArray = _selectedArray(i, this.col_base+1);
 	    if (_xor(selectedArray, table) === 0){
 	      return selectedArray;
 	    }
@@ -157,9 +171,9 @@
 	  return result;
 	}
 	
-	_selectedArray = function(num){
+	_selectedArray = function(num, col_base){
 	  var result = [];
-	  for(var i = 0; i<7; i++){
+	  for(var i = 0; i<col_base+1; i++){
 	    result.push(num % 2);
 	    num = Math.floor(num / 2);
 	  }
@@ -176,28 +190,28 @@
 	var Card = __webpack_require__(3);
 	var Deck = __webpack_require__(4);
 	
-	Table = function(){
-	  this.deck = new Deck();
+	Table = function(col_base){
+	  this.deck = new Deck(col_base);
 	  this.deck.shuffle();
-	  this.items = new Array(7);
-	  this.canvas = new Array(7);
-	  this.deal = new Array(7);
-	  for (var i = 0; i < 7; i++) {
+	  this.items = new Array(col_base+1);
+	  this.canvas = new Array(col_base+1);
+	  this.deal = new Array(col_base+1);
+	  for (var i = 0; i < col_base+1; i++) {
 	    $("#card"+i).removeClass('select');
 	    this.canvas[i] = document.getElementsByTagName("canvas")[i];
-	    this.items[i] = new Card(this.canvas[i], this.deck.draw());
+	    this.items[i] = new Card(this.canvas[i], this.deck.draw(),col_base);
 	    this.items[i].draw();
 	    this.deal[i] = false;
 	  }
-	  var canvas = document.getElementsByTagName("canvas")[7];
-	  var scoreCard = new Card(canvas, 0);
+	  var canvas = document.getElementsByTagName("canvas")[col_base+1];
+	  var scoreCard = new Card(canvas, 0, col_base);
 	  scoreCard.draw();
 	};
 	
-	Table.prototype.dealCards = function(){
-	  for(var i = 0; i < 7; i++) {
+	Table.prototype.dealCards = function(col_base){
+	  for(var i = 0; i < col_base+1; i++) {
 	    if(this.deal[i]){
-	      this.items[i] = new Card(this.canvas[i], this.deck.draw());
+	      this.items[i] = new Card(this.canvas[i], this.deck.draw(), col_base);
 	      this.items[i].draw();
 	      this.deal[i] = false;
 	    }
@@ -213,7 +227,7 @@
 
 	var color = [ 'red', 'blue', 'green', 'orange', 'purple', 'yellow'];
 	
-	Card = function(canvas, number){
+	Card = function(canvas, number, col_base){
 	  this.canvas = canvas;
 	  this.ctx = canvas.getContext('2d');
 	  canvas.width = 110;
@@ -221,20 +235,27 @@
 	  this.cw = canvas.width;
 	  this.ch = canvas.height;
 	  this.number = number;
-	  this.circle = new Array(6);
-	  this.circle[0] = {x: this.cw/4, y: this.ch/6, color: color[0]};
-	  this.circle[1] = {x: this.cw*3/4, y: this.ch/6, color: color[1]};
-	  this.circle[2] = {x: this.cw/4, y: this.ch/2, color: color[2]};
-	  this.circle[3] = {x: this.cw*3/4, y: this.ch/2, color: color[3]};
-	  this.circle[4] = {x: this.cw/4, y: this.ch*5/6, color: color[4]};
-	  this.circle[5] = {x: this.cw*3/4, y: this.ch*5/6, color: color[5]};
+	  this.circle = new Array(col_base);
+	  this.col_base = col_base;
+	  var y_len = (col_base === 3 || col_base === 4) ? 4 : 6;
+	  for (var i = 0; i < col_base; i++) {
+	    this.circle[i] = {};
+	    this.circle[i].color = color[i];
+	    if (i % 2) {
+	      this.circle[i].x = this.cw*3/4;
+	      this.circle[i].y = this.ch*i/y_len;
+	    } else {
+	      this.circle[i].x = this.cw/4;
+	      this.circle[i].y = this.ch*(i+1)/y_len;
+	    }
+	  }
 	};
 	
 	Card.prototype.draw = function(){
 	  this.ctx.fillStyle = "rgba(0,0,0,0)";
 	  this.ctx.fillRect(0, 0, this.cw, this.ch);
 	  var i;
-	  for(var pos = 0; pos < 6 ; pos++){
+	  for(var pos = 0; pos < this.col_base; pos++){
 	    i = Math.pow(2, pos);
 	    if((this.number & i) !== 0){
 	      this.drawColor(pos);
@@ -257,8 +278,8 @@
 /* 4 */
 /***/ function(module, exports) {
 
-	Deck = function(){
-	  this.deck = Array.apply(null, {length: 64}).map(Number.call, Number).splice(1);
+	Deck = function(col_base){
+	  this.deck = Array.apply(null, {length: Math.pow(2,col_base)}).map(Number.call, Number).splice(1);
 	  var deck = document.getElementById("deck");
 	  var card;
 	  for (var i = 0; i < this.deck.length; i++) {
