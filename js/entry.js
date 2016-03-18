@@ -59,10 +59,29 @@ $('#solve').click(function(){
 });
 
 $('#beginner').click(function() {
+  col_base = 3;
+  _regenerateGame(col_base);
+});
+
+$('#intermediate').click(function() {
+  col_base = 4;
+  _regenerateGame(col_base);
+});
+
+$('#advance').click(function() {
+  col_base = 5;
+  _regenerateGame(col_base);
+});
+
+$('#hard').click(function() {
+  col_base = 6;
+  _regenerateGame(col_base);
+});
+
+_regenerateGame = function(col_base){
   $('.card').remove();
   $('.card_back').remove();
   var cards = document.getElementById("cards");
-  col_base = 3;
   var card;
   for (var i = 0; i < col_base+1; i++) {
     card = document.createElement("canvas");
@@ -73,4 +92,4 @@ $('#beginner').click(function() {
   game = new Game(col_base);
   $('#score').text("Score: " +game.score);
   table = game.table;
-});
+}
