@@ -33,7 +33,6 @@
     <div id="text">
       <h2>Welcome to Projective Set!</h2>
       <h2 id="score">Score: 0</h2>
-      <h3>Match sets by selecting a group of cards that has an even number of each color dot.</h3>
     </div>
     <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
       <h4>Levels</h4>
@@ -42,28 +41,31 @@
       <a href="#" id="advance">Advance</a>
       <a href="#" id="hard">Hard</a>
     </div>
-    <div id="cards">
-      <canvas id="card0" class="card"></canvas>
-      <canvas id="card1" class="card"></canvas>
-      <canvas id="card2" class="card"></canvas>
-      <canvas id="card3" class="card"></canvas>
-      <canvas id="card4" class="card"></canvas>
-      <canvas id="card5" class="card"></canvas>
-      <canvas id="card6" class="card"></canvas>
-    </div>
+    <section class="main">
+      <h3>Match sets by selecting a group of cards that has an even number of each color dot.</h3>
+      <div id="cards">
+        <canvas id="card0" class="card"></canvas>
+        <canvas id="card1" class="card"></canvas>
+        <canvas id="card2" class="card"></canvas>
+        <canvas id="card3" class="card"></canvas>
+        <canvas id="card4" class="card"></canvas>
+        <canvas id="card5" class="card"></canvas>
+        <canvas id="card6" class="card"></canvas>
+      </div>
 
-    <div id="toolbar">
-      <button id="clear">Clear</button>
-      <button id="solve">Solve</button>
+      <div id="toolbar">
+        <button id="clear">Clear</button>
+        <button id="solve">Solve</button>
 
-    </div>
-    <br />
-    <div id="ans"></div>
-    <br />
+      </div>
+      <br />
+      <div id="ans"></div>
+      <br />
 
-		<div id="deck">
-      <canvas class="scoreCard"></canvas>
-    </div>
+  		<div id="deck">
+        <canvas class="scoreCard"></canvas>
+      </div>
+    </section>
 
     <script src="./js/bundle/jquery-2.1.1.js"></script>
     <script src="./js/bundle/bundle.js"></script>
