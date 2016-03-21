@@ -43,7 +43,7 @@ body {
 
 .select {
   border: 1px solid #ccc;
-  background: linear-gradient(70deg, #428BCA, white);
+  background: linear-gradient(70deg, #8492d4, white);
 }
 
 button {
@@ -66,6 +66,7 @@ h2 {
   float: left;
   margin-left:50px;
   margin-bottom:0;
+  padding: 0px;
 }
 
 h3 {
@@ -73,8 +74,9 @@ h3 {
   text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
   font: 30px 'ChunkFiveRegular';
   float: left;
-  margin-left:125px;
+  margin-left:80px;
   margin-top:0;
+  margin-bottom:0;
 }
 
 
@@ -85,7 +87,8 @@ h3 {
 	top:0;
 	right:0;
 	margin: auto auto;
-	padding: 40px 40px 40px 100px;
+  padding-bottom: 0;
+	/*padding: 40px 40px 40px 100px;*/
 	height:60px;
 	width: 400px;
 	position:relative;
@@ -126,7 +129,10 @@ h3 {
   margin-right: 50px;
   padding: 10px;
   display: inline-block;
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
+  position: fixed;
+  left: 400px;
+  background: linear-gradient(70deg, #0d77b6, white);
+  /*-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
   background: rgba(255,255,255,1);
@@ -136,5 +142,55 @@ h3 {
   background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
   background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
   background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );*/
+}
+
+.cbp-spmenu {
+	background: #47a3da;
+	position: fixed;
+}
+
+.cbp-spmenu h4 {
+	color: #afdefa;
+	font-size: 1.9em;
+	padding: 20px;
+	margin: 0;
+	font-weight: 300;
+	background: #0d77b6;
+}
+
+.cbp-spmenu a {
+	display: block;
+	color: #fff;
+	font-size: 1.1em;
+	font-weight: 300;
+}
+
+.cbp-spmenu a:hover {
+	background: #258ecd;
+}
+
+.cbp-spmenu a:active {
+	background: #afdefa;
+	color: #47a3da;
+}
+
+.cbp-spmenu-vertical {
+	width: 240px;
+	height: 50%;
+	top: 25%;
+	z-index: 1000;
+}
+
+.cbp-spmenu-vertical a {
+	border-bottom: 1px solid #258ecd;
+	padding: 1em;
+}
+
+.cbp-spmenu-left {
+	left: 0px;
+}
+
+.cbp-spmenu-left.cbp-spmenu-open {
+	left: 0px;
 }

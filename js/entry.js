@@ -31,10 +31,6 @@ $('#cards').bind('click', function(){
   }
 });
 
-$('#newgame').click(function(){
-  window.location.reload();
-});
-
 $('#clear').click(function(){
   $('.select').removeClass('select');
   var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], 0, col_base);
@@ -59,21 +55,29 @@ $('#solve').click(function(){
 });
 
 $('#beginner').click(function() {
+  $('.active').removeClass('active');
+  $('#beginner').addClass('active');
   col_base = 3;
   _regenerateGame(col_base);
 });
 
 $('#intermediate').click(function() {
+  $('.active').removeClass('active');
+  $('#intermediate').addClass('active');
   col_base = 4;
   _regenerateGame(col_base);
 });
 
 $('#advance').click(function() {
+  $('.active').removeClass('active');
+  $('#advance').addClass('active');
   col_base = 5;
   _regenerateGame(col_base);
 });
 
 $('#hard').click(function() {
+  $('.active').removeClass('active');
+  $('#hard').addClass('active');
   col_base = 6;
   _regenerateGame(col_base);
 });
