@@ -3,6 +3,7 @@
   width: 100%;
   height: 30%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -23,7 +24,7 @@ body {
   border: 0px solid black;
 	border-radius: 8px;
   padding: 10px;
-  margin: 25px;
+  margin: 20px;
 	cursor:pointer;
   display: inline-block;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
@@ -41,7 +42,7 @@ body {
 
 .select {
   border: 1px solid #ccc;
-  background: linear-gradient(70deg, #8492d4, white);
+  background: linear-gradient(70deg, #0d77b6, white);
 }
 
 button {
@@ -78,12 +79,6 @@ h3 {
 }
 
 
-
-#score{
-  margin-left: 200px;
-  float:right;
-}
-
 .card_back{
 	background-image: url("http://www.jimknapp.com/Cards/Non-Bicycle_files/image002.jpg");
   background-size: 100% 100%;
@@ -110,13 +105,24 @@ h3 {
   height: 30%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .main {
   width:99%;
-  padding-left: 130px;
+  /*padding-left: 130px;*/
 }
 
+#score{
+  text-align: center;
+	/*background: black;
+  color: red;*/
+  padding-top:30px;
+  color: black;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+  letter-spacing: 5px;
+  font: 30px 'MisoRegular';
+}
 .scoreCard {
   border: 0px solid black;
 	border-radius: 8px;
@@ -125,7 +131,7 @@ h3 {
   padding: 10px;
   display: inline-block;
   position: fixed;
-  left: 25%;
+  /*left: 25%;*/
   background: linear-gradient(70deg, #0d77b6, white);
   /*-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
@@ -159,21 +165,22 @@ h3 {
 	color: #fff;
 	font-size: 1.1em;
 	font-weight: 300;
+  width: 100%;
 }
 
 .cbp-spmenu a:hover {
-	background: #258ecd;
+	background: #262626;
 }
 
-.cbp-spmenu a:active {
-	background: #afdefa;
-	color: #47a3da;
+.cbp-spmenu .active {
+	background: black;
+	color: #afdefa;
 }
 
 .cbp-spmenu-vertical {
 	width: 130px;
-	height: 50%;
-	top: 25%;
+	height: 100%;
+	top: 0%;
 	z-index: 1000;
 }
 
@@ -183,10 +190,10 @@ h3 {
   padding-left: 30px;
 }
 
-.cbp-spmenu-left {
-	left: 0px;
+.cbp-spmenu-right {
+	right: 0px;
 }
 
-.cbp-spmenu-left.cbp-spmenu-open {
-	left: 0px;
+.cbp-spmenu-right.cbp-spmenu-open {
+	right: 0px;
 }

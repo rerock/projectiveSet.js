@@ -32,14 +32,16 @@
   <body>
     <div id="text">
       <h2>Welcome to Projective Set!</h2>
-      <h2 id="score">Score: 0</h2>
     </div>
-    <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+    <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+      <h4 id="score">Score: 0</h4>
       <h4>Levels</h4>
       <a href="#" id="beginner" class="active">Beginner</a>
       <a href="#" id="intermediate">Intermediate</a>
       <a href="#" id="advance">Advance</a>
       <a href="#" id="hard">Hard</a>
+      <h4>Current Dots</h4>
+      <canvas class="scoreCard"></canvas>
     </div>
     <section class="main">
       <h3>Match sets by selecting a group of cards that has an even number of each color dot.</h3>
@@ -63,7 +65,6 @@
       <br />
 
   		<div id="deck">
-        <canvas class="scoreCard"></canvas>
       </div>
     </section>
 

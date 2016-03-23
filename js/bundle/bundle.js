@@ -63,7 +63,7 @@
 	
 	$('#cards').bind('click', function(){
 	  var res = game.xor(table);
-	  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
+	  var scoreCard = new Card(document.getElementsByTagName("canvas")[0], res, col_base);
 	  scoreCard.draw();
 	  if(res === 0){
 	    game.increaseScore();
@@ -79,7 +79,7 @@
 	
 	$('#clear').click(function(){
 	  $('.select').removeClass('select');
-	  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], 0, col_base);
+	  var scoreCard = new Card(document.getElementsByTagName("canvas")[0], 0, col_base);
 	  scoreCard.draw();
 	});
 	
@@ -96,7 +96,7 @@
 	    }
 	  }
 	  var res = game.xor(table);
-	  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
+	  var scoreCard = new Card(document.getElementsByTagName("canvas")[0], res, col_base);
 	  scoreCard.draw();
 	});
 	
@@ -216,17 +216,17 @@
 	Table = function(col_base){
 	  this.deck = new Deck(col_base);
 	  this.deck.shuffle();
-	  this.items = new Array(col_base+1);
-	  this.canvas = new Array(col_base+1);
-	  this.deal = new Array(col_base+1);
+	  this.items = new Array(col_base);
+	  this.canvas = new Array(col_base);
+	  this.deal = new Array(col_base);
 	  for (var i = 0; i < col_base+1; i++) {
 	    $("#card"+i).removeClass('select');
-	    this.canvas[i] = document.getElementsByTagName("canvas")[i];
+	    this.canvas[i] = document.getElementsByTagName("canvas")[i+1];
 	    this.items[i] = new Card(this.canvas[i], this.deck.draw(),col_base);
 	    this.items[i].draw();
 	    this.deal[i] = false;
 	  }
-	  var canvas = document.getElementsByTagName("canvas")[col_base+1];
+	  var canvas = document.getElementsByTagName("canvas")[0];
 	  var scoreCard = new Card(canvas, 0, col_base);
 	  scoreCard.draw();
 	};

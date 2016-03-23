@@ -17,7 +17,7 @@ $('#cards').click(function(e){
 
 $('#cards').bind('click', function(){
   var res = game.xor(table);
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[0], res, col_base);
   scoreCard.draw();
   if(res === 0){
     game.increaseScore();
@@ -33,7 +33,7 @@ $('#cards').bind('click', function(){
 
 $('#clear').click(function(){
   $('.select').removeClass('select');
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], 0, col_base);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[0], 0, col_base);
   scoreCard.draw();
 });
 
@@ -50,7 +50,7 @@ $('#solve').click(function(){
     }
   }
   var res = game.xor(table);
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[0], res, col_base);
   scoreCard.draw();
 });
 
