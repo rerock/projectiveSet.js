@@ -1,5 +1,6 @@
 var Game = require("./main/game");
-var game = new Game();
+var col_base = 6;
+var game = new Game(col_base);
 var table = game.table;
 
 $('#cards').click(function(e){
@@ -16,13 +17,13 @@ $('#cards').click(function(e){
 
 $('#cards').bind('click', function(){
   var res = game.xor(table);
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
   scoreCard.draw();
   if(res === 0){
     game.increaseScore();
     $('.select').fadeOut(150).fadeIn(150).removeClass('select');
     setTimeout(function() {
-      table.dealCards();
+      table.dealCards(col_base);
     }, 150)
     if (game.gameOver()) {
       document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
@@ -30,13 +31,9 @@ $('#cards').bind('click', function(){
   }
 });
 
-$('#newgame').click(function(){
-  window.location.reload();
-});
-
 $('#clear').click(function(){
   $('.select').removeClass('select');
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], 0);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], 0, col_base);
   scoreCard.draw();
 });
 
@@ -53,10 +50,50 @@ $('#solve').click(function(){
     }
   }
   var res = game.xor(table);
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[7], res);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
   scoreCard.draw();
 });
 
 $('#beginner').click(function() {
-  game = new Game();
+  $('.active').removeClass('active');
+  $('#beginner').addClass('active');
+  col_base = 3;
+  _regenerateGame(col_base);
 });
+
+$('#intermediate').click(function() {
+  $('.active').removeClass('active');
+  $('#intermediate').addClass('active');
+  col_base = 4;
+  _regenerateGame(col_base);
+});
+
+$('#advance').click(function() {
+  $('.active').removeClass('active');
+  $('#advance').addClass('active');
+  col_base = 5;
+  _regenerateGame(col_base);
+});
+
+$('#hard').click(function() {
+  $('.active').removeClass('active');
+  $('#hard').addClass('active');
+  col_base = 6;
+  _regenerateGame(col_base);
+});
+
+_regenerateGame = function(col_base){
+  $('.card').remove();
+  $('.card_back').remove();
+  var cards = document.getElementById("cards");
+  var card;
+  for (var i = 0; i < col_base+1; i++) {
+    card = document.createElement("canvas");
+    card.className = 'card';
+    card.id = 'card'+i;
+    cards.appendChild(card);
+  }
+  game = new Game(col_base);
+  $('#score').text("Score: " +game.score);
+  table = game.table;
+}
