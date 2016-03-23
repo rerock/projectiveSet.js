@@ -41,8 +41,16 @@ body {
 }
 
 .select {
-  border: 1px solid #ccc;
   background: linear-gradient(70deg, #0d77b6, white);
+}
+
+#game-over {
+  margin-top: 20%;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+  letter-spacing: 5px;
+  font: 80px 'MisoRegular';
 }
 
 button {
@@ -158,6 +166,7 @@ h3 {
 	margin: 0;
 	font-weight: 300;
 	background: #0d77b6;
+  text-align: center;
 }
 
 .cbp-spmenu a {

@@ -1,6 +1,8 @@
 var Game = require("./main/game");
 var col_base = 6;
 var game = new Game(col_base);
+$('.active').removeClass('active');
+$('#hard').addClass('active');
 var table = game.table;
 
 $('#cards').click(function(e){
@@ -27,6 +29,12 @@ $('#cards').bind('click', function(){
     }, 150)
     if (game.gameOver()) {
       document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
+      // $('#cards').remove();
+      // $('#toolbar').remove();
+      // var section = document.getElementById("main");
+      // var win = document.createElement("div");
+      // win.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
+      // section.appendChild(win);
     }
   }
 });
