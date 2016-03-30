@@ -175,7 +175,13 @@
 	};
 	
 	Game.prototype.xor = function(table) {
-	  return _xor(table.deal, table);
+	  var result = 0;
+	  for (var i = 0; i < table.deal.length; i++) {
+	    if ($("#card"+i).hasClass("select")) {
+	      result ^= table.items[i].number;
+	    }
+	  }
+	  return result;
 	};
 	
 	Game.prototype.gameOver = function(){
