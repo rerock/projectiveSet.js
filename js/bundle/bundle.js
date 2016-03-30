@@ -47,6 +47,7 @@
 	var Game = __webpack_require__(1);
 	var col_base = 6;
 	var game = new Game(col_base);
+	$('#toolbar').show();
 	$('.active').removeClass('active');
 	$('#hard').addClass('active');
 	var table = game.table;
@@ -74,13 +75,12 @@
 	      table.dealCards(col_base);
 	    }, 150)
 	    if (game.gameOver()) {
-	      document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
-	      // $('#cards').remove();
-	      // $('#toolbar').remove();
-	      // var section = document.getElementById("main");
-	      // var win = document.createElement("div");
-	      // win.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
-	      // section.appendChild(win);
+	      $('.card').remove();
+	      $('#toolbar').hide();
+	      var section = document.getElementById("main");
+	      var win = document.createElement("div");
+	      win.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
+	      section.appendChild(win);
 	    }
 	  }
 	});
@@ -109,6 +109,7 @@
 	});
 	
 	$('#beginner').click(function() {
+	  $('#toolbar').show();
 	  $('.active').removeClass('active');
 	  $('#beginner').addClass('active');
 	  col_base = 3;
@@ -116,6 +117,7 @@
 	});
 	
 	$('#intermediate').click(function() {
+	  $('#toolbar').show();
 	  $('.active').removeClass('active');
 	  $('#intermediate').addClass('active');
 	  col_base = 4;
@@ -123,6 +125,7 @@
 	});
 	
 	$('#advance').click(function() {
+	  $('#toolbar').show();
 	  $('.active').removeClass('active');
 	  $('#advance').addClass('active');
 	  col_base = 5;
@@ -130,6 +133,7 @@
 	});
 	
 	$('#hard').click(function() {
+	  $('#toolbar').show();
 	  $('.active').removeClass('active');
 	  $('#hard').addClass('active');
 	  col_base = 6;
