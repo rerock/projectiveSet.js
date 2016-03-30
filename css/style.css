@@ -62,7 +62,7 @@ button {
 }
 
 button:hover {
- background: #428BCA;
+ background: #afdefa;
 }
 
 h2 {
@@ -146,10 +146,10 @@ h3 {
   display: inline-block;
   position: fixed;
   height: 26%;
-  width: 10%;
+  width: 160px;
   /*left: 25%;*/
   background: linear-gradient(70deg, #0d77b6, white);
-  right: 2.2%;
+  right: 30px;
   /*-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.66);
@@ -200,7 +200,7 @@ h3 {
 	font-weight: 300;
   width: 100%;
   height: 5%;
-  margin: 10px 0px;
+  margin: 7px 0px;
   text-decoration: none;
   font: 100 20px/1.3 'Oleo Script', Helvetica, sans-serif;
 }
@@ -221,8 +221,7 @@ h3 {
   /*background-image: url("http://images.clipartpanda.com/notebook-paper-clipart-nTXqqnKTB.png");*/
   /*background-image: url("https://cdn0.iconfinder.com/data/icons/books-and-notepads/100/notebook_spring_4-512.png");*/
   background-size: 100% 100%;
-	width: 15%;
-  min-width: 200px;
+  width: 240px;
 	height: 100%;
 	top: 0%;
 	z-index: 1000;

@@ -50,6 +50,7 @@
 	$('#toolbar').show();
 	$('.active').removeClass('active');
 	$('#hard').addClass('active');
+	$('#game-over').remove();
 	var table = game.table;
 	
 	$('#cards').click(function(e){
@@ -112,6 +113,7 @@
 	  $('#toolbar').show();
 	  $('.active').removeClass('active');
 	  $('#beginner').addClass('active');
+	  $('#game-over').remove();
 	  col_base = 3;
 	  _regenerateGame(col_base);
 	});
@@ -120,6 +122,7 @@
 	  $('#toolbar').show();
 	  $('.active').removeClass('active');
 	  $('#intermediate').addClass('active');
+	  $('#game-over').remove();
 	  col_base = 4;
 	  _regenerateGame(col_base);
 	});
@@ -128,6 +131,7 @@
 	  $('#toolbar').show();
 	  $('.active').removeClass('active');
 	  $('#advance').addClass('active');
+	  $('#game-over').remove();
 	  col_base = 5;
 	  _regenerateGame(col_base);
 	});
@@ -136,6 +140,7 @@
 	  $('#toolbar').show();
 	  $('.active').removeClass('active');
 	  $('#hard').addClass('active');
+	  $('#game-over').remove();
 	  col_base = 6;
 	  _regenerateGame(col_base);
 	});
