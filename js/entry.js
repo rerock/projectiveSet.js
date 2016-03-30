@@ -1,6 +1,9 @@
 var Game = require("./main/game");
 var col_base = 6;
 var game = new Game(col_base);
+$('#toolbar').show();
+$('.active').removeClass('active');
+$('#hard').addClass('active');
 var table = game.table;
 
 $('#cards').click(function(e){
@@ -17,7 +20,7 @@ $('#cards').click(function(e){
 
 $('#cards').bind('click', function(){
   var res = game.xor(table);
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[0], res, col_base);
   scoreCard.draw();
   if(res === 0){
     game.increaseScore();
@@ -26,14 +29,19 @@ $('#cards').bind('click', function(){
       table.dealCards(col_base);
     }, 150)
     if (game.gameOver()) {
-      document.body.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
+      $('.card').remove();
+      $('#toolbar').hide();
+      var section = document.getElementById("main");
+      var win = document.createElement("div");
+      win.innerHTML = "<h1 id='game-over'>YOU ROCK!</h1>";
+      section.appendChild(win);
     }
   }
 });
 
 $('#clear').click(function(){
   $('.select').removeClass('select');
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], 0, col_base);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[0], 0, col_base);
   scoreCard.draw();
 });
 
@@ -50,11 +58,12 @@ $('#solve').click(function(){
     }
   }
   var res = game.xor(table);
-  var scoreCard = new Card(document.getElementsByTagName("canvas")[col_base+1], res, col_base);
+  var scoreCard = new Card(document.getElementsByTagName("canvas")[0], res, col_base);
   scoreCard.draw();
 });
 
 $('#beginner').click(function() {
+  $('#toolbar').show();
   $('.active').removeClass('active');
   $('#beginner').addClass('active');
   col_base = 3;
@@ -62,6 +71,7 @@ $('#beginner').click(function() {
 });
 
 $('#intermediate').click(function() {
+  $('#toolbar').show();
   $('.active').removeClass('active');
   $('#intermediate').addClass('active');
   col_base = 4;
@@ -69,6 +79,7 @@ $('#intermediate').click(function() {
 });
 
 $('#advance').click(function() {
+  $('#toolbar').show();
   $('.active').removeClass('active');
   $('#advance').addClass('active');
   col_base = 5;
@@ -76,6 +87,7 @@ $('#advance').click(function() {
 });
 
 $('#hard').click(function() {
+  $('#toolbar').show();
   $('.active').removeClass('active');
   $('#hard').addClass('active');
   col_base = 6;
