@@ -111,7 +111,9 @@
 	
 	$('#beginner').click(function() {
 	  $('#toolbar').show();
-	  $(".description").removeClass("formular");
+	  $('.be_formular').remove();
+	  $('.af_formular').remove();
+	  $(".math").removeClass("formular");
 	  $('.active').removeClass('active');
 	  $('#beginner').addClass('active');
 	  $('#game-over').remove();
@@ -121,7 +123,9 @@
 	
 	$('#intermediate').click(function() {
 	  $('#toolbar').show();
-	  $(".description").removeClass("formular");
+	  $('.be_formular').remove();
+	  $('.af_formular').remove();
+	  $(".math").removeClass("formular");
 	  $('.active').removeClass('active');
 	  $('#intermediate').addClass('active');
 	  $('#game-over').remove();
@@ -133,7 +137,9 @@
 	  $('#toolbar').show();
 	  $('.active').removeClass('active');
 	  $('#advance').addClass('active');
-	  $(".description").removeClass("formular");
+	  $('.be_formular').remove();
+	  $('.af_formular').remove();
+	  $(".math").removeClass("formular");
 	  $('#game-over').remove();
 	  col_base = 5;
 	  _regenerateGame(col_base);
@@ -143,7 +149,9 @@
 	  $('#toolbar').show();
 	  $('.active').removeClass('active');
 	  $('#hard').addClass('active');
-	  $(".description").removeClass("formular");
+	  $('.be_formular').remove();
+	  $('.af_formular').remove();
+	  $(".math").removeClass("formular");
 	  $('#game-over').remove();
 	  col_base = 6;
 	  _regenerateGame(col_base);
@@ -168,18 +176,20 @@
 	$('#about').click(function(){
 	  $('.card_back').remove();
 	  $('.card').remove();
+	  $('.be_formular').remove();
+	  $('.af_formular').remove();
 	  $('#toolbar').hide();
-	  $(".description").addClass("formular");
+	  $("<div></div>").addClass("be_formular").prependTo('.description');
 	  // $('.description').remove();
 	  // $("<div></div>").addClass("description").appendTo('#title');
-	  $(".description").append("<h1>In the game of projective set, a card has n binary attributes, or bits, represented by colored dots. For each color of dot, each card either has that dot or does not. There is one card for each possible combination of dots except the combination of no dots at all, making 2<sup>n-1</sup>cards total. The objective is to find a set of cards that has an even number of every color dot.  Equivalently, a linearly dependent collection of cards. Equivalently, the XOR operation of all cards in a set leaves no dots visible. </h1>");
-	  $(".description").append("<h2>Idea:</h2>");
-	  $(".description").append("<h3>In a vector space of dimension N, any N+1 vectors are linearly dependant.</h3>");
-	  $(".description").append("<h2>Details:</h2>");
-	  $(".description").append("<h1>The 2<sup>n-1</sup> number of cards can be represented as the nonzero vectors in the N-dimensional vector space (V) over the 2-element field 𝔽<sub>2</sub>: The N coordinates correspond to the N colors. If a color is present on a card, the corresponding entry is 1 and otherwise 0.</h1>");
-	  $(".description").append("<h1>Under this correspondence, a set is a collection of vectors whose sum is the zero vector. Since the dimension of the vector space is N, any set of N+1 vectors v<sub>1</sub>,v<sub>2</sub>,..., v<sub>n+1</sub> must be linearly dependent, i.e. there exist constants c<sub>i</sub>∈𝔽<sub>2</sub>, not all zero, such that</h1>");
+	  $(".be_formular").append("<h1>In the game of projective set, a card has n binary attributes, or bits, represented by colored dots. For each color of dot, each card either has that dot or does not. There is one card for each possible combination of dots except the combination of no dots at all, making 2<sup>n-1</sup>cards total. The objective is to find a set of cards that has an even number of every color dot.  Equivalently, a linearly dependent collection of cards. Equivalently, the XOR operation of all cards in a set leaves no dots visible. </h1>");
+	  $(".be_formular").append("<h2>Idea:</h2>");
+	  $(".be_formular").append("<h3>In a vector space of dimension N, any N+1 vectors are linearly dependant.</h3>");
+	  $(".be_formular").append("<h1>The 2<sup>n-1</sup> number of cards can be represented as the nonzero vectors in the N-dimensional vector space (V) over the 2-element field 𝔽<sub>2</sub>: The N coordinates correspond to the N colors. If a color is present on a card, the corresponding entry is 1 and otherwise 0.</h1>");
+	  $(".be_formular").append("<h1>Under this correspondence, a set is a collection of vectors whose sum is the zero vector. Since the dimension of the vector space is N, any set of N+1 vectors v<sub>1</sub>,v<sub>2</sub>,..., v<sub>n+1</sub> must be linearly dependent, i.e. there exist constants c<sub>i</sub>∈𝔽<sub>2</sub>, not all zero, such that</h1>");
 	  $(".math").addClass("formular");
-	  $(".description").append("<h1>Since the c<sub>i</sub>'s all either 0 or 1, so this is equivalent to some subset of the v<sub>i</sub>'s must sum to the zero vector. Therefore, any N+1 cards contain a set.</h1>");
+	  $("<div></div>").addClass("af_formular").appendTo('.description');
+	  $(".af_formular").append("<h1>Since the c<sub>i</sub>'s all either 0 or 1, so this is equivalent to some subset of the v<sub>i</sub>'s must sum to the zero vector. Therefore, any N+1 cards contain a set.</h1>");
 	});
 
 
